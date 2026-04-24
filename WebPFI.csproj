@@ -112,6 +112,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DAL\ImageAsset.cs" />
+    <Compile Include="DAL\Repository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -126,14 +128,13 @@
     <Content Include="App_Assets\teachers\f9a42fd9-87e4-41d6-87c6-50fa3526db49.jpeg" />
     <Content Include="App_Assets\teachers\fbb51b24-2763-4d30-b175-6a78856ade4b.jpeg" />
     <Content Include="App_Assets\teachers\no_avatar.png" />
-    <Content Include="css\Courses.css" />
-    <Content Include="css\Selections.css" />
-    <Content Include="css\site.css" />
-    <Content Include="css\Students.css" />
-    <Content Include="css\Teachers.css" />
+    <Content Include="Content\Courses.css" />
+    <Content Include="Content\Selections.css" />
+    <Content Include="Content\Students.css" />
+    <Content Include="Content\site.css" />
+    <Content Include="Content\Teachers.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="App_Data\Courses.json" />
     <Content Include="App_Data\Students.json" />
     <Content Include="App_Data\Teachers.json" />
@@ -155,7 +156,11 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Models\Accounts\" />
+    <Folder Include="Models\Home\" />
+    <Folder Include="Models\Medias\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
