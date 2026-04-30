@@ -112,6 +112,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DAL\DB.cs" />
     <Compile Include="DAL\ImageAsset.cs" />
     <Compile Include="DAL\Record.cs" />
     <Compile Include="DAL\Repository.cs" />
