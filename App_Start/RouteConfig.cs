@@ -9,6 +9,10 @@ namespace WebPFI
 {
     public class RouteConfig
     {
+        public static string DefaultAction()
+        {
+            return "/Shared/_header.cshtml";
+        }
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");

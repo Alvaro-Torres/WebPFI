@@ -1,6 +1,6 @@
-﻿using EmailHandling;
+﻿//using EmailHandling;
 using Models;
-using PhotosManager.Models;
+//using PhotosManager.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -27,7 +27,7 @@ namespace DAL
        // static public EventsRepository Events { get; set; }
        //     = new EventsRepository();
 
-        static public Repository<RenewPasswordCommand> RenewPasswordCommands { get; set; }
-            = new Repository<RenewPasswordCommand>();
+       // static public Repository<RenewPasswordCommand> RenewPasswordCommands { get; set; }
+         //   = new Repository<RenewPasswordCommand>();
     }
 }

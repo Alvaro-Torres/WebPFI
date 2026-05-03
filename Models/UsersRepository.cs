@@ -75,7 +75,7 @@ namespace Models
                 if (userToDelete != null)
                 {
                     BeginTransaction();
-                    userToDelete.DeleteLogins();
+                    //userToDelete.DeleteLogins();
                     /* 
                      * TODO : Delete user other related data
                      */

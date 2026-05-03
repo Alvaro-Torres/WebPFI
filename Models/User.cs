@@ -71,16 +71,16 @@ namespace Models
         public bool IsOnline { get { return Online; } }
         #endregion
 
-        [JsonIgnore]
-        public List<Login> Logins { get { return DB.Logins.ToList().Where(l => l.UserId == Id).ToList(); } }
+        //[JsonIgnore]
+        //public List<Login> Logins { get { return DB.Logins.ToList().Where(l => l.UserId == Id).ToList(); } }
 
-        public void DeleteLogins()
-        {
-            foreach (Login login in Logins)
-            {
-                DB.Logins.Delete(login.Id);
-            }
-        }
+        //public void DeleteLogins()
+        //{
+        //    foreach (Login login in Logins)
+        //    {
+        //        DB.Logins.Delete(login.Id);
+        //    }
+        //}
 
         private static List<int> GetOnlineUser()
         {
