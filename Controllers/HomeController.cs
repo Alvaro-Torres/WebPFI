@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace WebPFI.Controllers
+namespace Controllers
 {
     public class HomeController : Controller
     {

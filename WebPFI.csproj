@@ -112,6 +112,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="DAL\Asset.cs" />
     <Compile Include="DAL\DAL.cs" />
     <Compile Include="DAL\DB.cs" />
@@ -169,6 +170,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Views\Shared\_header.cshtml" />
+    <Content Include="Views\Students\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
