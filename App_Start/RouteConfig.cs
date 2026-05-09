@@ -11,7 +11,7 @@ namespace WebPFI
     {
         public static string DefaultAction()
         {
-            return "/Students/Index.cshtml";
+            return "/Shared/_Layout.cshtml";
         }
         public static void RegisterRoutes(RouteCollection routes)
         {

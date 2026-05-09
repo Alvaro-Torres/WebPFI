@@ -143,6 +143,7 @@
     <Content Include="Content\Students.css" />
     <Content Include="Content\site.css" />
     <Content Include="Content\Teachers.css" />
+    <Content Include="Content\_layout.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="App_Data\Courses.json" />
