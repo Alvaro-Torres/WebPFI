@@ -1,4 +1,5 @@
 ﻿//using EmailHandling;
+using Controllers;
 using Models;
 //using PhotosManager.Models;
 using System.Collections.Generic;
@@ -18,16 +19,18 @@ namespace DAL
         static public UsersRepository Users { get; set; }
             = new UsersRepository();
 
-      //  static public NotificationsRepository Notifications { get; set; }
-      //      = new NotificationsRepository();
+        public static Student Student { get; set; }
 
-       // static public LoginsRepository Logins { get; set; }
+        //  static public NotificationsRepository Notifications { get; set; }
+        //      = new NotificationsRepository();
+
+        // static public LoginsRepository Logins { get; set; }
         //    = new LoginsRepository();
 
-       // static public EventsRepository Events { get; set; }
-       //     = new EventsRepository();
+        // static public EventsRepository Events { get; set; }
+        //     = new EventsRepository();
 
-       // static public Repository<RenewPasswordCommand> RenewPasswordCommands { get; set; }
-         //   = new Repository<RenewPasswordCommand>();
+        // static public Repository<RenewPasswordCommand> RenewPasswordCommands { get; set; }
+        //   = new Repository<RenewPasswordCommand>();
     }
 }

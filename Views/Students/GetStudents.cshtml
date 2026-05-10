@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Models.Student> /* Type of data passed to this partialview */
+<!--
+    This view is intended to be called via by an action controller in this manner :
+
+    return PartialView(IEnumerable<Models.Students> students);
+
+    A partial view produce html without the use of /Views/Shared/_Layout.cshtml
+
+-->
+
+@foreach (var student in Model) /* Model is the instance passed to this view */
+{
+    <div class="StudentListLayout">
+        <a href="/Contacts/Details/@student.Id" title="Voir les détails de @student.FirstName">@student.FirstName</a>
+        @*@if (student._IsBirthDay)
+        {
+            <i class="fas fa-birthday-cake birthdayIcon"></i>
+        }*@
+    </div>
+}
