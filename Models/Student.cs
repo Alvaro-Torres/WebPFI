@@ -16,4 +16,9 @@ namespace Models
         public string Phone { get; set; }
 
     }
+
+    public class Students : DAL.RecordsDB<Student>
+    {
+        public Students(DAL.DataBase dataBase) : base(dataBase) { }
+    }
 }

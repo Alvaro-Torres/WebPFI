@@ -25,7 +25,7 @@ namespace Controllers
 
                 
 
-                result = DB.Student.ToList().OrderBy(c => c.LastName);
+                result = DB.Students.ToList().OrderBy(c => c.LastName);
                 return PartialView(result);
             }
             return null;

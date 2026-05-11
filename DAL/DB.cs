@@ -19,7 +19,7 @@ namespace DAL
         static public UsersRepository Users { get; set; }
             = new UsersRepository();
 
-        public static Student Student { get; set; }
+        public static Students Students { get; set; }
 
         //  static public NotificationsRepository Notifications { get; set; }
         //      = new NotificationsRepository();
