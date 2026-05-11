@@ -1,9 +1,35 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-}
+﻿<!--
+    The content of this view rely on the one produced
+    by the /Contacts/GetContacts action that call
+    Views/Contacts/GetContacts.cshtml partial view
+-->
 
-<h2>Index</h2>
-<div id="studentListPanel" class="studentListLayout">
-    <!-- Periodicaly refreshed by object studentListPanel of class AutoRefreshedPanel -->
+<div id="StuListPanel" class="StudentListLayout">
+    <!-- Periodicaly refreshed by object contactListPanel of class AutoRefreshedPanel -->
 </div>
+
+@section Scripts {
+    <script>$(() => {
+            let contactListAutoRefreshPanel = new AutoRefreshedPanel("ContactListPanel", "/Contacts/GetContacts", 5, contactListPostRefresh);
+           // let townSelectAutoRefreshPanel = new AutoRefreshedPanel("TownSelectPanel", "/Contacts/GetContactsTownsList", -1 /* manually refreshed */, townSelectPostRefresh);
+           // let keywordsOnchangeTimer = null;
+
+
+            function contactListPostRefresh() {
+                townSelectAutoRefreshPanel.refresh(true);
+            }
+            function townSelectPostRefresh() {
+
+                $("#townSelect").off();
+                $("#townSelect").focus(function () {
+                    contactListAutoRefreshPanel.pause();
+                });
+                $("#townSelect").blur(function () {
+                    contactListAutoRefreshPanel.restart();
+                });
+                $("#townSelect").on('change', function () {
+                    window.location = "/Contacts/SetSearchTown?value=" + $("#townSelect").val();
+                });
+            }
+        })</script>
+}

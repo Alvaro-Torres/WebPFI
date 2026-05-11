@@ -11,7 +11,7 @@
 @foreach (var student in Model) /* Model is the instance passed to this view */
 {
     <div class="StudentListLayout">
-        <a href="/Contacts/Details/@student.Id" title="Voir les détails de @student.FirstName">@student.FirstName</a>
+        <a href="/Students/Details/@student.Id" title="Voir les détails de @student.FirstName">@student.FirstName</a>
         @*@if (student._IsBirthDay)
         {
             <i class="fas fa-birthday-cake birthdayIcon"></i>
