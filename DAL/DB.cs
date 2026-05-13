@@ -1,8 +1,12 @@
 ﻿//using EmailHandling;
+using Antlr.Runtime;
 using Controllers;
 using Models;
+using System;
+
 //using PhotosManager.Models;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Reflection;
 using System.Web.Hosting;
@@ -19,7 +23,8 @@ namespace DAL
         static public UsersRepository Users { get; set; }
             = new UsersRepository();
 
-        public static Students Students { get; set; }
+        public static Repository<Student> Students { get; set; }
+            = new Repository<Student>();
 
         //  static public NotificationsRepository Notifications { get; set; }
         //      = new NotificationsRepository();
@@ -32,5 +37,7 @@ namespace DAL
 
         // static public Repository<RenewPasswordCommand> RenewPasswordCommands { get; set; }
         //   = new Repository<RenewPasswordCommand>();
+
+
     }
 }

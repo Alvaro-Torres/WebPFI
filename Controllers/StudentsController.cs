@@ -20,11 +20,8 @@ namespace Controllers
         public ActionResult GetStudents(bool forceRefresh = false)
         {
             IEnumerable<Student> result = null;
-            if (forceRefresh || DB.Student.HasChanged)
+            if (forceRefresh || DB.Students.HasChanged)
             {
-
-                
-
                 result = DB.Students.ToList().OrderBy(c => c.LastName);
                 return PartialView(result);
             }

@@ -1,0 +1,4 @@
+1|2026-05-13 4:04:50 AM|[6] DAL.DataBase.BeginTransaction Error!|
+2|2026-05-13 4:04:50 AM|[6] A connection was successfully established with the server, but then an error occurred during the login process. (provider: Named Pipes Provider, error: 0 - No process is on the other end of the pipe.)|
+3|2026-05-13 4:04:50 AM|[6] DAL.RecordsDB.QuerySQL - Connection Error!| Exception message: The given key was not present in the dictionary.
+4|2026-05-13 4:04:50 AM|[6] DAL.DataBase.EndTransaction Error!|No transaction was started, can't commit or rollback. 

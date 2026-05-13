@@ -21,9 +21,6 @@ namespace Models
         [Asset(Avatars_Folder, Default_Avatar)]
         public string Avatar { get; set; } = Avatars_Folder + Default_Avatar;
 
-        public class Teachers : DAL.RecordsDB<Teacher>
-        {
-            public Teachers(DAL.DataBase dataBase) : base(dataBase) { }
-        }
+
     }
 }

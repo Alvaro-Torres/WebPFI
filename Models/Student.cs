@@ -17,8 +17,5 @@ namespace Models
 
     }
 
-    public class Students : DAL.RecordsDB<Student>
-    {
-        public Students(DAL.DataBase dataBase) : base(dataBase) { }
-    }
+
 }
