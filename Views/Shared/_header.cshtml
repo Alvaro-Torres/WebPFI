@@ -22,7 +22,10 @@
 
 <div class="section roundedBorder">
     <div class="headerMenu">
-        <a class="siteIcon" href="/Medias/list"></a>
+        <i class="fa fa-user-graduate siteIcon"></i>
+        <a href="/Students/Index" class='navLink @(controller == "students" ? "active" : "")'>Étudiants</a>
+        <a href="/Courses/Index" class='navLink @(controller == "courses" ? "active" : "")'>Cours</a>
+        <a href="/Teachers/Index" class='navLink @(controller == "teachers" ? "active" : "")'>Profs</a>
         <div class="pageTitle">@ViewBag.PageTitle</div>
         <!-- Direct action context command icons -->
         @switch (action)
@@ -140,21 +143,21 @@
                 }
                 break;
             @*case "edit":
-                if (userCanWrite)
-                {
-                    <div id="mainMenuPanel" class="menu">
-                        @if (userIsAdmin || (userConnected && currentMediaId != 0 && DB.Medias.Get(currentMediaId).OwnerId == Models.User.ConnectedUser.Id))
-                        {
-                            <a href="/@controller/Edit" class="cmdIcon fa fa-pen-to-square" title="Modifier..."></a>
-                            <i class="cmdIcon fa fa-trash-can"
-                               title="Effacer"
-                               onclick="bootbox.confirm(`<b style=color:red>Effacer le Media : </b><h3>@currentMediaTitle?</h3>`, function(result){ if (result) window.location = '/@controller/Delete'; })">
-                            </i>
-                        }
-                        <a href="/@controller/Details/@currentMediaId" class="cmdIcon fa fa-square-xmark" title="Annuler"></a>
-                    </div>
-                }
-                break;*@
+            if (userCanWrite)
+            {
+                <div id="mainMenuPanel" class="menu">
+                    @if (userIsAdmin || (userConnected && currentMediaId != 0 && DB.Medias.Get(currentMediaId).OwnerId == Models.User.ConnectedUser.Id))
+                    {
+                        <a href="/@controller/Edit" class="cmdIcon fa fa-pen-to-square" title="Modifier..."></a>
+                        <i class="cmdIcon fa fa-trash-can"
+                           title="Effacer"
+                           onclick="bootbox.confirm(`<b style=color:red>Effacer le Media : </b><h3>@currentMediaTitle?</h3>`, function(result){ if (result) window.location = '/@controller/Delete'; })">
+                        </i>
+                    }
+                    <a href="/@controller/Details/@currentMediaId" class="cmdIcon fa fa-square-xmark" title="Annuler"></a>
+                </div>
+            }
+            break;*@
             case "loginsjournal":
             case "eventsjournal":
             case "manageusers":

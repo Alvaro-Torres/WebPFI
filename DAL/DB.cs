@@ -23,8 +23,17 @@ namespace DAL
         static public UsersRepository Users { get; set; }
             = new UsersRepository();
 
-        public static Repository<Student> Students { get; set; }
-            = new Repository<Student>();
+        public static StudentsRepository Students { get; set; }
+            = new StudentsRepository();
+
+        public static TeachersRepository Teachers { get; set; }
+            = new TeachersRepository();
+
+        public static Repository<Allocation> Allocations { get; set; }
+             = new Repository<Allocation>();
+
+        public static Repository<Registration> Registrations { get; set; }
+            = new Repository<Registration>();
 
         //  static public NotificationsRepository Notifications { get; set; }
         //      = new NotificationsRepository();

@@ -1,7 +1,17 @@
-﻿
+﻿@model Models.Student
 @{
-    ViewBag.Title = "Details";
+    ViewBag.PageTitle = "Détails";
 }
 
-<h2>Details</h2>
+<div id="studentDetailsPanel" class="detailsPanel">
+    <!-- Rafraîchie périodiquement -->
+</div>
 
+@section Scripts {
+    <script>
+        $(() => {
+            /* Créer un panel auto-rafraîchi qui appelle GetStudentDetails */
+            studentDetails_ARP = new AutoRefreshedPanel("studentDetailsPanel", "/Students/GetStudentDetails", 5, null);
+        })
+    </script>
+}

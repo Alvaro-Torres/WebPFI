@@ -1,0 +1,37 @@
+﻿@model Models.Student
+
+@if (Model != null)
+{
+    <details open>
+        <summary>
+            /* Icône diplômé et nom complet de l'étudiant */
+            <i class="fa fa-user-graduate"></i>
+            @Model.LastName @Model.FirstName
+        </summary>
+
+        <dl>
+            /* Code de l'étudiant avec icône code-barres */
+            <dt><i class="fa fa-barcode"></i></dt>
+            <dd>@Model.Code</dd>
+
+            /* Numéro de téléphone avec icône téléphone */
+            <dt><i class="fa fa-phone"></i></dt>
+            <dd>@Model.Phone</dd>
+
+            /* Courriel avec icône enveloppe */
+            <dt><i class="fa fa-envelope"></i></dt>
+            <dd>@Model.Email</dd>
+
+            /* Date de naissance avec icône calendrier */
+            <dt><i class="fa fa-calendar"></i></dt>
+            <dd>@Model.BirthDate.ToShortDateString()</dd>
+        </dl>
+    </details>
+
+    /* Section inscriptions - à compléter plus tard */
+    <h3>Inscriptions</h3>
+}
+else
+{
+    <h2 style="color:red">Cet étudiant a été effacé...</h2>
+}

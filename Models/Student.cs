@@ -1,13 +1,13 @@
-﻿using System;
+﻿using DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
 namespace Models
 {
-    public class Student
+    public class Student : Record
     {
-        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Code { get; set; } = $"{DateTime.Now.Year}{new Random().Next(100000, 999999)}";
@@ -16,6 +16,5 @@ namespace Models
         public string Phone { get; set; }
 
     }
-
 
 }

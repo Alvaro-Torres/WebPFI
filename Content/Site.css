@@ -12,7 +12,7 @@ label {
     margin-top: 8px;
 }
 
-a, .noDecoration {
+a:not(.navLink), .noDecoration {
     color: black;
     text-decoration: none;
 }
@@ -123,4 +123,27 @@ summary {
 
 .highlight {
     background-color: yellow;
+}
+
+
+.navLink {
+    color: black;
+    text-decoration: none;
+    padding: 4px 8px;
+}
+
+    .navLink:hover {
+        color: gray;
+    }
+
+    .navLink.active {
+        font-weight: bold;
+        border-bottom: 2px solid black;
+        color: black;
+    }
+
+.siteIcon {
+    color: red;
+    font-size: 24px;
+    margin-right: 8px;
 }

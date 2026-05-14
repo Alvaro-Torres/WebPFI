@@ -111,8 +111,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
+    <Compile Include="Controllers\TeachersController.cs" />
     <Compile Include="DAL\Asset.cs" />
     <Compile Include="DAL\DB.cs" />
     <Compile Include="DAL\ImageAsset.cs" />
@@ -121,10 +123,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Allocation.cs" />
+    <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\Registration.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\LoginCredential.cs" />
     <Compile Include="Models\SelectListUtilities.cs" />
+    <Compile Include="Models\StudentsRepository.cs" />
     <Compile Include="Models\Teacher.cs" />
+    <Compile Include="Models\TeachersRepository.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UsersRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -137,7 +144,6 @@
     <Content Include="App_Assets\teachers\f9a42fd9-87e4-41d6-87c6-50fa3526db49.jpeg" />
     <Content Include="App_Assets\teachers\fbb51b24-2763-4d30-b175-6a78856ade4b.jpeg" />
     <Content Include="App_Assets\teachers\no_avatar.png" />
-    <Content Include="App_Data\SQL_Journal.txt" />
     <Content Include="Content\Courses.css" />
     <Content Include="Content\Selections.css" />
     <Content Include="Content\Students.css" />
@@ -167,7 +173,10 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Courses\" />
+    <Folder Include="Views\Teachers\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Views\Shared\_header.cshtml" />
@@ -175,6 +184,8 @@
     <Content Include="Views\Students\GetStudents.cshtml" />
     <Content Include="Views\Students\Details.cshtml" />
     <None Include="Properties\PublishProfiles\WebPFI20260513044245 - Web Deploy.pubxml" />
+    <Content Include="Views\Students\Edit.cshtml" />
+    <Content Include="Views\Students\GetStudentDetails.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
