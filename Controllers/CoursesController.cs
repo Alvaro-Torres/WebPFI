@@ -5,9 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using Models;
 using DAL;
+using static Controllers.AccessControl;
 
 namespace Controllers
 {
+    [UserAccess(Models.Access.View)]
     public class CoursesController : Controller
     {
         public ActionResult List()
@@ -76,6 +78,7 @@ namespace Controllers
 
         // L'id n'est pas fourni en paramètre, il est récupéré de la session
         // pour éviter les requêtes malicieuses
+        [UserAccess(Models.Access.Write)]
         public ActionResult Edit()
         {
             int id = Session["CurrentCourseId"] != null ? (int)Session["CurrentCourseId"] : 0;
@@ -88,6 +91,7 @@ namespace Controllers
             return RedirectToAction("List");
         }
 
+        [UserAccess(Models.Access.Write)]
         [HttpPost]
         [ValidateAntiForgeryToken()]
         public ActionResult Edit(Course course)
@@ -105,12 +109,14 @@ namespace Controllers
             return RedirectToAction("List");
         }
 
+        [UserAccess(Models.Access.Write)]
         public ActionResult Create()
         {
             // Retourner un nouveau cours vide au formulaire
             return View(new Course());
         }
 
+        [UserAccess(Models.Access.Write)]
         [HttpPost]
         [ValidateAntiForgeryToken()]
         public ActionResult Create(Course course)
@@ -120,6 +126,7 @@ namespace Controllers
             return RedirectToAction("List");
         }
 
+        [UserAccess(Models.Access.Write)]
         public ActionResult Delete()
         {
             // L'id est récupéré de la session pour éviter les requêtes malicieuses
