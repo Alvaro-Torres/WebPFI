@@ -17,6 +17,11 @@ namespace Controllers
             return View();
         }
 
+        public ActionResult About()
+        {
+            return View();
+        }
+
         // Action qui produit une vue partielle des enseignants
         // Destinée à être appelée par une requête AJAX
         public ActionResult GetTeachers(bool forceRefresh = false)

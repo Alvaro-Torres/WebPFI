@@ -17,6 +17,11 @@ namespace Controllers
             return View();
         }
 
+        public ActionResult About()
+        {
+            return View();
+        }
+
         // This action produce a partial view of students
         // It is meant to be called by an AJAX request (from client script)
         public ActionResult GetStudents(bool forceRefresh = false)
@@ -174,6 +179,7 @@ namespace Controllers
             Session["SearchString"] = value.ToLower();
             return RedirectToAction("List");
         }
+
 
     }
 }
