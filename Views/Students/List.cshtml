@@ -1,0 +1,12 @@
+﻿<div id="StuListPanel" class="StudentListLayout">
+    <!-- Rafraîchie périodiquement -->
+</div>
+
+@section Scripts {
+    <script>
+        $(() => {
+            /* Créer un panel auto-rafraîchi qui appelle GetStudents */
+            let studentListAutoRefreshPanel = new AutoRefreshedPanel("StuListPanel", "/Students/GetStudents", 5, null);
+        })
+    </script>
+}

@@ -17,15 +17,15 @@
     bool userIsAdmin = userConnected ? Models.User.ConnectedUser.IsAdmin : false;
     bool userCanWrite = userConnected ? Models.User.ConnectedUser.CanWrite : false;
 
-    string index = RouteConfig.DefaultAction();
+    string list = RouteConfig.DefaultAction();
 }
 
 <div class="section roundedBorder">
     <div class="headerMenu">
         <i class="fa fa-user-graduate siteIcon"></i>
-        <a href="/Students/Index" class='navLink @(controller == "students" ? "active" : "")'>Étudiants</a>
-        <a href="/Courses/Index" class='navLink @(controller == "courses" ? "active" : "")'>Cours</a>
-        <a href="/Teachers/Index" class='navLink @(controller == "teachers" ? "active" : "")'>Profs</a>
+        <a href="/Students/List" class='navLink @(controller == "students" ? "active" : "")'>Étudiants</a>
+        <a href="/Courses/List" class='navLink @(controller == "courses" ? "active" : "")'>Cours</a>
+        <a href="/Teachers/List" class='navLink @(controller == "teachers" ? "active" : "")'>Profs</a>
         <div class="pageTitle">@ViewBag.PageTitle</div>
         <!-- Direct action context command icons -->
         @switch (action)
@@ -138,32 +138,32 @@
                 {
                     <div id="mainMenuPanel" class="menu">
                         <i class="cmdIcon submitCmd fa fa-circle-check" title="Soumettre" onclick="document.getElementById('submit').click()"></i>
-                        <a href="/@controller/List" class="cmdIcon fa fa-square-xmark" title="Annuler"></a>
+                        <a href="/@controller/Index" class="cmdIcon fa fa-square-xmark" title="Annuler"></a>
                     </div>
                 }
                 break;
-            @*case "edit":
+            case "edit":
             if (userCanWrite)
             {
                 <div id="mainMenuPanel" class="menu">
-                    @if (userIsAdmin || (userConnected && currentMediaId != 0 && DB.Medias.Get(currentMediaId).OwnerId == Models.User.ConnectedUser.Id))
-                    {
+                    @*@if (userIsAdmin || (userConnected && currentStudentId != 0 && DB.Students.Get(currentStudentId).Id == Models.User.ConnectedUser.Id))
+                    {*@
                         <a href="/@controller/Edit" class="cmdIcon fa fa-pen-to-square" title="Modifier..."></a>
                         <i class="cmdIcon fa fa-trash-can"
                            title="Effacer"
                            onclick="bootbox.confirm(`<b style=color:red>Effacer le Media : </b><h3>@currentMediaTitle?</h3>`, function(result){ if (result) window.location = '/@controller/Delete'; })">
                         </i>
-                    }
+                    @*}*@
                     <a href="/@controller/Details/@currentMediaId" class="cmdIcon fa fa-square-xmark" title="Annuler"></a>
                 </div>
             }
-            break;*@
+            break;
             case "loginsjournal":
             case "eventsjournal":
             case "manageusers":
             case "about":
                 <div id="mainMenuPanel" class="menu">
-                    <a href="@index" class="cmdIcon fa fa-square-xmark" title="Retour"></a>
+                    <a href="@list" class="cmdIcon fa fa-square-xmark" title="Retour"></a>
                 </div>
                 break;
         }

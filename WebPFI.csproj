@@ -173,19 +173,25 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Views\Courses\" />
-    <Folder Include="Views\Teachers\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="App_Data\Registrations.json" />
+    <Content Include="App_Data\Allocations.json" />
+    <Content Include="App_Data\Users.json" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_header.cshtml" />
-    <Content Include="Views\Students\Index.cshtml" />
+    <Content Include="Views\Students\List.cshtml" />
     <Content Include="Views\Students\GetStudents.cshtml" />
     <Content Include="Views\Students\Details.cshtml" />
     <None Include="Properties\PublishProfiles\WebPFI20260513044245 - Web Deploy.pubxml" />
     <Content Include="Views\Students\Edit.cshtml" />
     <Content Include="Views\Students\GetStudentDetails.cshtml" />
+    <Content Include="Views\Students\Create.cshtml" />
+    <Content Include="Views\Students\StudentForm.cshtml" />
+    <Content Include="Views\Teachers\GetTeachers.cshtml" />
+    <Content Include="Views\Courses\GetCourses.cshtml" />
+    <Content Include="Views\Courses\List.cshtml" />
+    <Content Include="Views\Teachers\List.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

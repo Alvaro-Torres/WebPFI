@@ -1,35 +1,44 @@
-﻿@model Models.Student
+﻿@using DAL
+@model Models.Student
 
 @if (Model != null)
 {
     <details open>
         <summary>
-            /* Icône diplômé et nom complet de l'étudiant */
             <i class="fa fa-user-graduate"></i>
             @Model.LastName @Model.FirstName
         </summary>
-
         <dl>
-            /* Code de l'étudiant avec icône code-barres */
-            <dt><i class="fa fa-barcode"></i></dt>
-            <dd>@Model.Code</dd>
-
-            /* Numéro de téléphone avec icône téléphone */
-            <dt><i class="fa fa-phone"></i></dt>
-            <dd>@Model.Phone</dd>
-
-            /* Courriel avec icône enveloppe */
-            <dt><i class="fa fa-envelope"></i></dt>
-            <dd>@Model.Email</dd>
-
-            /* Date de naissance avec icône calendrier */
-            <dt><i class="fa fa-calendar"></i></dt>
-            <dd>@Model.BirthDate.ToShortDateString()</dd>
+            
+            <dd><i class="fa fa-barcode"></i> @Model.Code</dd>
+            <dd><i class="fa fa-phone"></i> @Model.Phone</dd>
+            <dd><i class="fa fa-paperplane"></i> @Model.Email</dd>
+            <dd><i class="fa fa-calendar"></i> @Model.BirthDate</dd>
         </dl>
     </details>
 
-    /* Section inscriptions - à compléter plus tard */
     <h3>Inscriptions</h3>
+    // Récupérer les inscriptions de l'étudiant, les grouper par année et les trier par année décroissante
+    var registrations = DB.Registrations.ToList().Where(r => r.StudentId == Model.Id).GroupBy(r => r.Year).OrderByDescending(g => g.Key);
+
+    foreach (var group in registrations)
+    {
+        <details open>
+            <summary>@group.Key</summary>
+            @foreach (var registration in group)
+            {
+                var course = DB.Courses.Get(registration.CourseId);
+                if (course != null)
+                {
+                    <div>
+                        <a href="/Courses/Details/@course.Id">
+                            [@course.Session] @course.Code @course.Title
+                        </a>
+                    </div>
+                }
+            }
+        </details>
+    }
 }
 else
 {

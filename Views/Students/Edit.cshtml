@@ -1,0 +1,15 @@
+@model Models.Student
+@{
+    ViewBag.Action = "Edit";
+    Html.RenderPartial("StudentForm");
+    ViewBag.PageTitle = "Modification étudiant";
+}
+
+@section Scripts {
+    <script>
+        $(() => {
+            /* Nécessaire pour la validation des champs de formulaire */
+            initFormValidation();
+        })
+    </script>
+}

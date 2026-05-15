@@ -1,0 +1,40 @@
+﻿@model Models.Student
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <fieldset>
+        <legend>Prénom</legend>
+        <input id="FirstName" name="FirstName" class="form-control"
+               placeholder="Prénom" value="@Model.FirstName"
+               required RequireMessage="Veuillez entrer un prénom" />
+    </fieldset>
+
+    <fieldset>
+        <legend>Nom</legend>
+        <input id="LastName" name="LastName" class="form-control"
+               placeholder="Nom" value="@Model.LastName"
+               required RequireMessage="Veuillez entrer un nom" />
+    </fieldset>
+
+    <fieldset>
+        <legend>Date de naissance</legend>
+        <input id="BirthDate" name="BirthDate" class="form-control datepicker"
+               placeholder="Date de naissance" value="@Model.BirthDate.ToString("yyyy-MM-dd")" />
+    </fieldset>
+
+    <fieldset>
+        <legend>Téléphone</legend>
+        <input id="Phone" name="Phone" class="form-control phone"
+               placeholder="(999) 999-9999" value="@Model.Phone" />
+    </fieldset>
+
+    <fieldset>
+        <legend>Courriel</legend>
+        <input id="Email" name="Email" class="form-control"
+               placeholder="Courriel" value="@Model.Email" />
+    </fieldset>
+
+    <input id="submit" type="submit" value="Enregistrer" class="btn btn-primary" style="display:none">
+}

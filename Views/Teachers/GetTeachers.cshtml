@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Models.Teacher>
+
+@{
+    /* Regrouper les enseignants par année de début en ordre décroissant */
+    var groupedTeachers = Model.GroupBy(t => t.StartDate.Year)
+                               .OrderByDescending(g => g.Key);
+}
+
+@foreach (var group in groupedTeachers)
+{
+    <details open>
+        /* En-tête cliquable affichant l'année de début */
+        <summary>@group.Key</summary>
+        @foreach (var teacher in group.OrderBy(t => t.LastName))
+        {
+            /* Afficher le code, le nom et le prénom comme lien cliquable vers les détails */
+            <div class="teacherLayout">
+                <a href="/Teachers/Details/@teacher.Id" title="Voir les détails de @teacher.FirstName">
+                    @teacher.Code @teacher.LastName @teacher.FirstName
+                </a>
+            </div>
+        }
+    </details>
+}

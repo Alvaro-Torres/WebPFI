@@ -10,7 +10,7 @@ namespace Controllers
 {
     public class StudentsController : Controller
     {
-        public ActionResult Index()
+        public ActionResult List()
         {
             return View();
         }
@@ -63,7 +63,7 @@ namespace Controllers
             }
 
             // Si l'étudiant n'existe pas, retourner à la liste
-            return RedirectToAction("Index");
+            return RedirectToAction("List");
         }
 
         public ActionResult Edit()
@@ -75,7 +75,7 @@ namespace Controllers
                 if (student != null)
                     return View(student);
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("List");
         }
 
         [HttpPost]
@@ -96,8 +96,27 @@ namespace Controllers
                 DB.Students.Update(student);
                 return RedirectToAction("Details/" + id);
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("List");
         }
+
+
+
+        // [UserAccess(Models.Access.Write)]
+        public ActionResult Create()
+        {
+            /* Retourner un nouvel étudiant vide au formulaire */
+            return View(new Student());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken()]
+        public ActionResult Create(Student student)
+        {
+            /* Ajouter l'étudiant à la base de données */
+            DB.Students.Add(student);
+            return RedirectToAction("List");
+        }
+
 
     }
 }

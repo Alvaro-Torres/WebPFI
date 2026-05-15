@@ -1,0 +1,11 @@
+﻿<div id="TeachersListPanel" class="TeachersListLayout">
+    <!-- Rafraîchie périodiquement -->
+</div>
+
+@section Scripts {
+    <script>
+        $(() => {
+            let teachersListAutoRefreshPanel = new AutoRefreshedPanel("TeachersListPanel", "/Teachers/GetTeachers", 5, null);
+        })
+    </script>
+}

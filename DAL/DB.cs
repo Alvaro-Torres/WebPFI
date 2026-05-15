@@ -35,6 +35,9 @@ namespace DAL
         public static Repository<Registration> Registrations { get; set; }
             = new Repository<Registration>();
 
+        public static Repository<Course> Courses { get; set; }
+            = new Repository<Course>();
+
         //  static public NotificationsRepository Notifications { get; set; }
         //      = new NotificationsRepository();
 

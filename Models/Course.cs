@@ -8,6 +8,8 @@ namespace Models
 {
     public class Course : Record
     {
-
+        public string Code { get; set; }
+        public string Title { get; set; }
+        public string Session { get; set; }
     }
 }

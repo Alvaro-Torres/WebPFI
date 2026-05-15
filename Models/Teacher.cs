@@ -11,7 +11,7 @@ namespace Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Code { get; set; } = $"CLG-420-{new Random().Next(10000, 99999)}";
-        public DateTime BirthDate { get; set; } = DateTime.Now;
+        public DateTime StartDate { get; set; } = DateTime.Now;
         public string Email { get; set; }
         public string Phone { get; set; }
 

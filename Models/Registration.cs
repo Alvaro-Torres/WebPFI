@@ -8,7 +8,7 @@ namespace Models
 {
     public class Registration : Record
     {
-        public int TeacherId { get; set; }
+        public int StudentId { get; set; }
         public int CourseId { get; set; }
         public int Year { get; set; }
     }
