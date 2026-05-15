@@ -13,7 +13,7 @@ label {
 }
 
 a:not(.navLink), .noDecoration {
-    color: black;
+   /* color: black;*/
     text-decoration: none;
 }
 

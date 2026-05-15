@@ -73,7 +73,16 @@ namespace Controllers
             {
                 Student student = DB.Students.Get(id);
                 if (student != null)
+                {
+                    /* Passer les listes de cours pour le widget de sélection */
+                    ViewBag.Registrations = new SelectList(
+                    student.NextSessionCourses.Select(c => new { Id = c.Id, Display = c.Code + " " + c.Title }),"Id", "Display");
+
+                    ViewBag.Courses = new SelectList(
+                    DB.Courses.ToList().OrderBy(c => c.Code).Select(c => new { Id = c.Id, Display = c.Code + " " + c.Title }),"Id", "Display");
+
                     return View(student);
+                }
             }
             return RedirectToAction("List");
         }
@@ -117,6 +126,20 @@ namespace Controllers
             return RedirectToAction("List");
         }
 
+        public ActionResult Delete()
+        {
+            // L'id est récupéré de la session pour éviter les requêtes malicieuses
+            int id = Session["CurrentStudentId"] != null ? (int)Session["CurrentStudentId"] : 0;
+            if (id != 0)
+            {
+                // Supprimer toutes les inscriptions de l'étudiant avant de le supprimer
+                Student student = DB.Students.Get(id);
+                if (student != null)
+                    student.DeleteAllRegistrations();
+                DB.Students.Delete(id);
+            }
+            return RedirectToAction("List");
+        }
 
     }
 }

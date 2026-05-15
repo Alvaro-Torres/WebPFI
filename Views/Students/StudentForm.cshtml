@@ -1,4 +1,9 @@
-﻿@model Models.Student
+﻿@using Models;
+@model Models.Student
+@{
+    string birthDate = Model.BirthDate.Year > 1 ? Model.BirthDate.ToString("yyyy-MM-dd") : "";
+    bool creating = ViewBag.Action == "Create";
+}
 
 @using (Html.BeginForm())
 {
@@ -21,7 +26,7 @@
     <fieldset>
         <legend>Date de naissance</legend>
         <input id="BirthDate" name="BirthDate" class="form-control datepicker"
-               placeholder="Date de naissance" value="@Model.BirthDate.ToString("yyyy-MM-dd")" />
+               placeholder="Date de naissance" value="@birthDate" />
     </fieldset>
 
     <fieldset>
@@ -35,6 +40,17 @@
         <input id="Email" name="Email" class="form-control"
                placeholder="Courriel" value="@Model.Email" />
     </fieldset>
+
+    if (!creating)
+    {
+        <details open>
+            <summary>@NextSession.Caption</summary>
+             @*Widget de sélection de cours pour la prochaine session*@ 
+            @Helper.SelectionLists("selectedCoursesId",
+                (SelectList)ViewBag.Registrations,
+                (SelectList)ViewBag.Courses)
+        </details>
+    }
 
     <input id="submit" type="submit" value="Enregistrer" class="btn btn-primary" style="display:none">
 }

@@ -21,9 +21,10 @@
         {
             <div class="studentLayout">
 
-                <a href="/Students/Details/@student.Id" title="Voir les détails de @student.FirstName">
-                    @student.Code @student.LastName @student.FirstName
-                </a>
+                
+                    <a href="/Students/Details/@student.Id" class="studentCode">@student.Code</a><a href="/Students/Details/@student.Id" title="Voir les détails de @student.FirstName">
+                     @student.LastName @student.FirstName
+                    </a>
             </div>
         }
     </details>

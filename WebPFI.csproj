@@ -135,6 +135,7 @@
     <Compile Include="Models\EventsRepository.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\LoginsRepository.cs" />
+    <Compile Include="Models\NextSession.cs" />
     <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\NotificationsRepository.cs" />
     <Compile Include="Models\Registration.cs" />
@@ -172,8 +173,15 @@
     <Content Include="App_Data\Teachers.json" />
     <Content Include="App_Code\Helper.cshtml" />
     <Content Include="Scripts\autoRefreshPanel.js" />
+    <Content Include="Scripts\bootbox.js" />
+    <Content Include="Scripts\image-control.js" />
+    <Content Include="Scripts\jquery-maskedinput.js" />
+    <Content Include="Scripts\pageManager.js" />
     <Content Include="Scripts\selections.js" />
+    <Content Include="Scripts\session.js" />
+    <Content Include="Scripts\SiteNotificationsHandler.js" />
     <Content Include="Scripts\SiteScripts.js" />
+    <Content Include="Scripts\validation.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -213,6 +221,18 @@
     <Content Include="Views\Courses\GetCoursesDetails.cshtml" />
     <Content Include="Views\Courses\CoursesForm.cshtml" />
     <Content Include="Views\Courses\Create.cshtml" />
+    <Content Include="Views\Accounts\EditProfil.cshtml" />
+    <Content Include="Views\Accounts\EventsJournal.cshtml" />
+    <Content Include="Views\Accounts\GetEventsList.cshtml" />
+    <Content Include="Views\Accounts\GetLoginsList.cshtml" />
+    <Content Include="Views\Accounts\GetUsers.cshtml" />
+    <Content Include="Views\Accounts\Login.cshtml" />
+    <Content Include="Views\Accounts\LoginsJournal.cshtml" />
+    <Content Include="Views\Accounts\ManageUsers.cshtml" />
+    <Content Include="Views\Accounts\ProfilForm.cshtml" />
+    <Content Include="Views\Accounts\RenewPassword.cshtml" />
+    <Content Include="Views\Accounts\RenewPasswordCommand.cshtml" />
+    <Content Include="Views\Accounts\Subscribe.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

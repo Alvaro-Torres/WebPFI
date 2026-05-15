@@ -44,7 +44,7 @@
     min-width: 120px;
 }
 
-@media screen and (max-width: 560px ) {
+@media screen and (max-width: 300px) {
     .selectionsGrid {
         display: flex;
         flex-flow: column;
