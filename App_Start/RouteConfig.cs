@@ -11,7 +11,7 @@ namespace WebPFI
     {
         public static string DefaultAction()
         {
-            return "/Shared/_Layout.cshtml";
+            return "/Students/List";
         }
         public static void RegisterRoutes(RouteCollection routes)
         {
@@ -20,7 +20,7 @@ namespace WebPFI
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Students", action = "List", id = UrlParameter.Optional }
+                defaults: new { controller = "Accounts", action = "Login", id = UrlParameter.Optional }
             );
         }
     }

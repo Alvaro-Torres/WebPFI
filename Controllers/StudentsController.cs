@@ -1,13 +1,15 @@
-﻿using System;
+﻿using DAL;
+using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Models;
-using DAL;
+using static Controllers.AccessControl;
 
 namespace Controllers
 {
+    [UserAccess(Models.Access.View)]
     public class StudentsController : Controller
     {
         public ActionResult List()
@@ -39,6 +41,7 @@ namespace Controllers
             }
             return null;
         }
+
 
         public ActionResult GetStudentDetails(bool forceRefresh = false)
         {
@@ -78,6 +81,7 @@ namespace Controllers
             return RedirectToAction("List");
         }
 
+        [UserAccess(Models.Access.Write)]
         public ActionResult Edit()
         {
             int id = Session["CurrentStudentId"] != null ? (int)Session["CurrentStudentId"] : 0;
@@ -99,6 +103,7 @@ namespace Controllers
             return RedirectToAction("List");
         }
 
+        [UserAccess(Models.Access.Write)]
         [HttpPost]
         [ValidateAntiForgeryToken()]
         public ActionResult Edit(Student student)
@@ -122,13 +127,14 @@ namespace Controllers
 
 
 
-        // [UserAccess(Models.Access.Write)]
+        [UserAccess(Models.Access.Write)]
         public ActionResult Create()
         {
             /* Retourner un nouvel étudiant vide au formulaire */
             return View(new Student());
         }
 
+        [UserAccess(Models.Access.Write)]
         [HttpPost]
         [ValidateAntiForgeryToken()]
         public ActionResult Create(Student student)
@@ -138,6 +144,7 @@ namespace Controllers
             return RedirectToAction("List");
         }
 
+        [UserAccess(Models.Access.Write)]
         public ActionResult Delete()
         {
             // L'id est récupéré de la session pour éviter les requêtes malicieuses

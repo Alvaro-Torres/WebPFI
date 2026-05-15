@@ -1,13 +1,15 @@
-﻿using System;
+﻿using DAL;
+using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Models;
-using DAL;
+using static Controllers.AccessControl;
 
 namespace Controllers
 {
+    [UserAccess(Models.Access.View)]
     public class TeachersController : Controller
     {
         public ActionResult List()
@@ -76,6 +78,7 @@ namespace Controllers
 
         // L'id n'est pas fourni en paramètre, il est récupéré de la session
         // pour éviter les requêtes malicieuses
+        [UserAccess(Models.Access.Write)]
         public ActionResult Edit()
         {
             int id = Session["CurrentTeacherId"] != null ? (int)Session["CurrentTeacherId"] : 0;
@@ -101,6 +104,7 @@ namespace Controllers
             return RedirectToAction("List");
         }
 
+        [UserAccess(Models.Access.Write)]
         [HttpPost]
         [ValidateAntiForgeryToken()]
         public ActionResult Edit(Teacher teacher, List<int> selectedCoursesId)
@@ -117,6 +121,7 @@ namespace Controllers
             }
             return RedirectToAction("List");
         }
+        [UserAccess(Models.Access.Write)]
 
         public ActionResult Create()
         {
@@ -124,6 +129,7 @@ namespace Controllers
             return View(new Teacher());
         }
 
+        [UserAccess(Models.Access.Write)]
         [HttpPost]
         [ValidateAntiForgeryToken()]
         public ActionResult Create(Teacher teacher)
@@ -133,6 +139,7 @@ namespace Controllers
             return RedirectToAction("List");
         }
 
+        [UserAccess(Models.Access.Write)]
         public ActionResult Delete()
         {
             // L'id est récupéré de la session pour éviter les requêtes malicieuses
