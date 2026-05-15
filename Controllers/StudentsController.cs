@@ -22,7 +22,19 @@ namespace Controllers
             IEnumerable<Student> result = null;
             if (forceRefresh || DB.Students.HasChanged)
             {
-                result = DB.Students.ToList().OrderBy(c => c.LastName);
+                // Récupérer les paramètres de recherche depuis la session
+                bool search = Session["Search"] != null ? (bool)Session["Search"] : false;
+                string searchString = Session["SearchString"] != null ? (string)Session["SearchString"] : "";
+
+                // Récupérer la liste des étudiants, filtrer par nom si la recherche est activée, et trier par nom
+                if (search && !string.IsNullOrEmpty(searchString))
+                    result = DB.Students.ToList()
+                               .Where(s => s.LastName.ToLower().Contains(searchString) ||
+                                           s.FirstName.ToLower().Contains(searchString))
+                               .OrderBy(s => s.LastName);
+                else
+                    result = DB.Students.ToList().OrderBy(s => s.LastName);
+
                 return PartialView(result);
             }
             return null;
@@ -138,6 +150,21 @@ namespace Controllers
                     student.DeleteAllRegistrations();
                 DB.Students.Delete(id);
             }
+            return RedirectToAction("List");
+        }
+
+        public ActionResult ToggleSearch()
+        {
+            // Activer/désactiver la recherche
+            if (Session["Search"] == null) Session["Search"] = false;
+            Session["Search"] = !(bool)Session["Search"];
+            return RedirectToAction("List");
+        }
+
+        public ActionResult SetSearchString(string value)
+        {
+            // Sauvegarder la chaîne de recherche en minuscules
+            Session["SearchString"] = value.ToLower();
             return RedirectToAction("List");
         }
 

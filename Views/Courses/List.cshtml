@@ -1,11 +1,41 @@
-﻿<div id="CoursesListPanel" class="CoursesListLayout">
+﻿@{
+    string searchString = Session["SearchString"] != null ? (string)Session["SearchString"] : "";
+}
+
+<div id="CoursesListPanel" class="CoursesListLayout">
     <!-- Rafraîchie périodiquement -->
 </div>
 
 @section Scripts {
     <script>
         $(() => {
-            let coursesListAutoRefreshPanel = new AutoRefreshedPanel("CoursesListPanel", "/Courses/GetCourses", 5, null);
+            let coursesListAutoRefreshPanel = new AutoRefreshedPanel("CoursesListPanel", "/Courses/GetCourses", 5, postRefresh);
+            let keywordsOnchangeTimer = null;
+
+            //permet de mettre en évidence les mots-clés de recherche dans les résultats
+            function postRefresh() {
+                let keyword = "@searchString";
+                if (keyword.length > 0) {
+                    let links = document.getElementsByClassName('courseSearch');
+                    // Parcourt tous les éléments avec la classe 'courseSearch' et met en évidence le mot-clé de recherche
+                    Array.from(links).forEach(link => {
+                        highlight(keyword, link);
+                    });
+                }
+            }
+
+            $("#searchInput").on('keyup', function () {
+                clearTimeout(keywordsOnchangeTimer);
+                // Met à jour la chaîne de recherche après un délai d'inactivité de 500ms
+                keywordsOnchangeTimer = setTimeout(() => {
+                    window.location = "/Courses/SetSearchString?value=" + $("#searchInput").val();
+                }, 500);
+            });
+
+            $("#searchInput").on('search', function () {
+                clearTimeout(keywordsOnchangeTimer);
+                window.location = "/Courses/SetSearchString?value=" + $("#searchInput").val();
+            });
         })
     </script>
 }

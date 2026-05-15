@@ -1,11 +1,40 @@
-﻿<div id="TeachersListPanel" class="TeachersListLayout">
+﻿@{
+    string searchString = Session["SearchString"] != null ? (string)Session["SearchString"] : "";
+}
+
+<div id="TeachersListPanel" class="TeachersListLayout">
     <!-- Rafraîchie périodiquement -->
 </div>
 
 @section Scripts {
     <script>
         $(() => {
-            let teachersListAutoRefreshPanel = new AutoRefreshedPanel("TeachersListPanel", "/Teachers/GetTeachers", 5, null);
+            let teachersListAutoRefreshPanel = new AutoRefreshedPanel("TeachersListPanel", "/Teachers/GetTeachers", 5, postRefresh);
+            let keywordsOnchangeTimer = null;
+
+            //permet de mettre en évidence les mots-clés de recherche dans les résultats
+            function postRefresh() {
+                let keyword = "@searchString";
+                if (keyword.length > 0) {
+                    let links = document.getElementsByClassName('teacherSearch');
+                    Array.from(links).forEach(link => {
+                        highlight(keyword, link);
+                    });
+                }
+            }
+
+            // Met à jour la chaîne de recherche après un délai d'inactivité de 500ms
+            $("#searchInput").on('keyup', function () {
+                clearTimeout(keywordsOnchangeTimer);
+                keywordsOnchangeTimer = setTimeout(() => {
+                    window.location = "/Teachers/SetSearchString?value=" + $("#searchInput").val();
+                }, 500);
+            });
+
+            $("#searchInput").on('search', function () {
+                clearTimeout(keywordsOnchangeTimer);
+                window.location = "/Teachers/SetSearchString?value=" + $("#searchInput").val();
+            });
         })
     </script>
 }

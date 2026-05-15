@@ -10,7 +10,7 @@ namespace Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Code { get; set; } = $"{DateTime.Now.Year}{new Random().Next(100000, 999999)}";
+        public string Code { get; set; } = $"{DateTime.Now.Year}{new Random().Next(100000, 1000000)}";
         public DateTime BirthDate { get; set; } = DateTime.Now;
         public string Email { get; set; }
         public string Phone { get; set; }

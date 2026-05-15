@@ -201,6 +201,11 @@
     <Content Include="App_Data\Registrations.json" />
     <Content Include="App_Data\Allocations.json" />
     <Content Include="App_Data\Users.json" />
+    <Content Include="App_Data\UnverifiedEmails.json" />
+    <Content Include="App_Data\RenewPasswordCommands.json" />
+    <Content Include="App_Data\Notifications.json" />
+    <Content Include="App_Data\Logins.json" />
+    <Content Include="App_Data\Events.json" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_header.cshtml" />
     <Content Include="Views\Students\List.cshtml" />
@@ -233,6 +238,10 @@
     <Content Include="Views\Accounts\RenewPassword.cshtml" />
     <Content Include="Views\Accounts\RenewPasswordCommand.cshtml" />
     <Content Include="Views\Accounts\Subscribe.cshtml" />
+    <Content Include="Views\Teachers\TeacherForm.cshtml" />
+    <Content Include="Views\Teachers\Create.cshtml" />
+    <Content Include="Views\Teachers\Edit.cshtml" />
+    <Content Include="Views\Courses\Edit.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -15,7 +15,9 @@
 
     bool userConnected = Models.User.ConnectedUser != null;
     bool userIsAdmin = userConnected ? Models.User.ConnectedUser.IsAdmin : false;
-    bool userCanWrite = userConnected ? Models.User.ConnectedUser.CanWrite : false;
+    //bool userCanWrite = userConnected ? Models.User.ConnectedUser.CanWrite : false;
+
+    bool userCanWrite = true; // TODO: restore when authentication is added
 
     string list = RouteConfig.DefaultAction();
 }
@@ -128,7 +130,7 @@
                     <a href="/@controller/Edit" class="cmdIcon fa fa-pen-to-square" title="Modifier..."></a>
                     <i class="cmdIcon fa fa-trash-can"
                        title="Effacer"
-                       onclick="bootbox.confirm(`<b style=color:red>Effacer le Media : </b><h3>@currentMediaTitle?</h3>`, function(result){ if (result) window.location = '/@controller/Delete'; })">
+                       onclick="bootbox.confirm(`<b style=color:red>Effacer?</b>`, function(result){ if (result) window.location = '/@controller/Delete'; })">
                     </i>
                     <a href="/@controller/List" class="cmdIcon fa fa-square-xmark" title="retour"></a>
                 </div>
@@ -138,26 +140,26 @@
                 {
                     <div id="mainMenuPanel" class="menu">
                         <i class="cmdIcon submitCmd fa fa-circle-check" title="Soumettre" onclick="document.getElementById('submit').click()"></i>
-                        <a href="/@controller/Index" class="cmdIcon fa fa-square-xmark" title="Annuler"></a>
+                        <a href="/@controller/List" class="cmdIcon fa fa-square-xmark" title="Annuler"></a>
                     </div>
                 }
                 break;
             case "edit":
-            if (userCanWrite)
-            {
-                <div id="mainMenuPanel" class="menu">
-                    @*@if (userIsAdmin || (userConnected && currentStudentId != 0 && DB.Students.Get(currentStudentId).Id == Models.User.ConnectedUser.Id))
-                    {*@
+                if (userCanWrite)
+                {
+                    <div id="mainMenuPanel" class="menu">
+                        @*@if (userIsAdmin || (userConnected && currentStudentId != 0 && DB.Students.Get(currentStudentId).Id == Models.User.ConnectedUser.Id))
+                            {*@
                         <a href="/@controller/Edit" class="cmdIcon fa fa-pen-to-square" title="Modifier..."></a>
                         <i class="cmdIcon fa fa-trash-can"
                            title="Effacer"
                            onclick="bootbox.confirm(`<b style=color:red>Effacer le Media : </b><h3>@currentMediaTitle?</h3>`, function(result){ if (result) window.location = '/@controller/Delete'; })">
                         </i>
-                    @*}*@
-                    <a href="/@controller/Details/@currentMediaId" class="cmdIcon fa fa-square-xmark" title="Annuler"></a>
-                </div>
-            }
-            break;
+                        @*}*@
+                        <a href="/@controller/Details/@currentMediaId" class="cmdIcon fa fa-square-xmark" title="Annuler"></a>
+                    </div>
+                }
+                break;
             case "loginsjournal":
             case "eventsjournal":
             case "manageusers":
@@ -170,14 +172,11 @@
 
     </div>
 </div>
-@if (search && controller == "medias" && action == "list")
+@if (search && action == "list")
 {
     <div class="flex">
-        <input type="search" id="searchInput" class="section roundedBorder flexItem" value="@searchString" placeholder="Recherche...">
-        <div id="categorySelectPanel" class="flexItem">
-            <!-- Dynamically refreshed -->
-            @{ Html.RenderPartial("GetMediasCategoriesList"); }
-        </div>
+        <input type="search" id="searchInput" class="section roundedBorder flexItem"
+               value="@searchString" placeholder="Recherche...">
     </div>
 }
 

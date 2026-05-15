@@ -20,10 +20,20 @@ namespace Controllers
         public ActionResult GetCourses(bool forceRefresh = false)
         {
             IEnumerable<Course> result = null;
-            // HasChanged est vrai si une modification a été apportée à un cours
             if (forceRefresh || DB.Courses.HasChanged)
             {
-                result = DB.Courses.ToList().OrderBy(c => c.Code);
+                bool search = Session["Search"] != null ? (bool)Session["Search"] : false;
+                string searchString = Session["SearchString"] != null ? (string)Session["SearchString"] : "";
+
+                // Filtrer les cours selon la chaîne de recherche si la recherche est activée
+                if (search && !string.IsNullOrEmpty(searchString))
+                    result = DB.Courses.ToList()
+                               .Where(c => c.Code.ToLower().Contains(searchString) ||
+                                           c.Title.ToLower().Contains(searchString))
+                               .OrderBy(c => c.Code);
+                else
+                    result = DB.Courses.ToList().OrderBy(c => c.Code);
+
                 return PartialView(result);
             }
             return null;
@@ -31,7 +41,7 @@ namespace Controllers
 
         // Action qui produit une vue partielle des détails d'un cours
         // Destinée à être appelée par une requête AJAX
-        public ActionResult GetCourseDetails(bool forceRefresh = false)
+        public ActionResult GetCoursesDetails(bool forceRefresh = false)
         {
             try
             {
@@ -120,5 +130,22 @@ namespace Controllers
             }
             return RedirectToAction("List");
         }
+
+        public ActionResult ToggleSearch()
+        {
+            // Activer/désactiver la recherche
+            if (Session["Search"] == null) Session["Search"] = false;
+            Session["Search"] = !(bool)Session["Search"];
+            return RedirectToAction("List");
+        }
+
+        public ActionResult SetSearchString(string value)
+        {
+            // Sauvegarder la chaîne de recherche en minuscules
+            Session["SearchString"] = value.ToLower();
+            return RedirectToAction("List");
+        }
     }
+
+
 }

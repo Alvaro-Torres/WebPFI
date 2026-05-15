@@ -20,10 +20,20 @@ namespace Controllers
         public ActionResult GetTeachers(bool forceRefresh = false)
         {
             IEnumerable<Teacher> result = null;
-            // HasChanged est vrai si une modification a été apportée à un enseignant
             if (forceRefresh || DB.Teachers.HasChanged)
             {
-                result = DB.Teachers.ToList().OrderBy(t => t.LastName);
+                bool search = Session["Search"] != null ? (bool)Session["Search"] : false;
+                string searchString = Session["SearchString"] != null ? (string)Session["SearchString"] : "";
+
+                // Appliquer la recherche si elle est activée et que la chaîne de recherche n'est pas vide
+                if (search && !string.IsNullOrEmpty(searchString))
+                    result = DB.Teachers.ToList()
+                               .Where(t => t.LastName.ToLower().Contains(searchString) ||
+                                           t.FirstName.ToLower().Contains(searchString))
+                               .OrderBy(t => t.LastName);
+                else
+                    result = DB.Teachers.ToList().OrderBy(t => t.LastName);
+
                 return PartialView(result);
             }
             return null;
@@ -73,23 +83,35 @@ namespace Controllers
             {
                 Teacher teacher = DB.Teachers.Get(id);
                 if (teacher != null)
+                {
+                    /* Passer les listes de cours pour le widget de sélection */
+                    ViewBag.Allocations = new SelectList(
+                        teacher.NextSessionCourses
+                        .Select(c => new { c.Id, Display = c.Code + " " + c.Title }),
+                        "Id", "Display");
+
+                    ViewBag.Courses = new SelectList(
+                        DB.Courses.ToList().OrderBy(c => c.Code)
+                        .Select(c => new { c.Id, Display = c.Code + " " + c.Title }),
+                        "Id", "Display");
+
                     return View(teacher);
+                }
             }
             return RedirectToAction("List");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken()]
-        public ActionResult Edit(Teacher teacher)
+        public ActionResult Edit(Teacher teacher, List<int> selectedCoursesId)
         {
-            // L'id est récupéré de la session pour éviter les requêtes malicieuses
             int id = Session["CurrentTeacherId"] != null ? (int)Session["CurrentTeacherId"] : 0;
             Teacher storedTeacher = DB.Teachers.Get(id);
             if (storedTeacher != null)
             {
-                // Restaurer l'id et le code qui ne doivent pas être modifiés
                 teacher.Id = id;
                 teacher.Code = storedTeacher.Code;
+                teacher.UpdateAllocations(selectedCoursesId);
                 DB.Teachers.Update(teacher);
                 return RedirectToAction("Details/" + id);
             }
@@ -119,6 +141,21 @@ namespace Controllers
             {
                 DB.Teachers.Delete(id);
             }
+            return RedirectToAction("List");
+        }
+
+        public ActionResult ToggleSearch()
+        {
+            // Activer/désactiver la recherche
+            if (Session["Search"] == null) Session["Search"] = false;
+            Session["Search"] = !(bool)Session["Search"];
+            return RedirectToAction("List");
+        }
+
+        public ActionResult SetSearchString(string value)
+        {
+            // Sauvegarder la chaîne de recherche en minuscules
+            Session["SearchString"] = value.ToLower();
             return RedirectToAction("List");
         }
     }

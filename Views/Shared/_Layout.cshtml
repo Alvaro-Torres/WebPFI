@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -25,14 +26,10 @@
                 @RenderBody()
             </div>
         </div>
-
-        <div id="footerPanel" class="section roundedBorder footerPanel">
-            &copy; @DateTime.Now.Year - Application Web - PFI 2026
-            <img src="/updatingView.gif"
-                 style="width:24px; display:none"
-                 id="updatingView"
-                 title="Rafraichissement de la vue" />
+        <div id="sessionPanel" class="section roundedBorder" style="padding: 8px;">
+            <b>Session courante : @NextSession.ShortCaption</b>
         </div>
+
 
     </div>
 
@@ -41,6 +38,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="~/Scripts/selections.js"></script>
+    <script src="~/Scripts/SiteScripts.js"></script>
     <!-- Insertion des regroupements de scripts -->
     @Scripts.Render("~/bundles/validation")
 

@@ -17,43 +17,62 @@
     margin: auto;
     gap: var(--gap);
     padding: var(--gap);
+}
 
-    .main {
-        flex: auto;
+.pageTitle {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.main {
+    flex: auto;
+}
+
+.content {
+    flex: auto;
+    display: flex;
+    min-height: 0vh;
+    gap: var(--gap);
+}
+
+    .content .section {
+        display: inline;
+        max-width: 20%;
     }
 
-    .content {
-        flex: auto;
-        display: flex;
-        /* must have for vertical overflow */
-        min-height: 0vh;
-        gap: var(--gap);
-        /* For additionnal section */
-        .sideSection {
-            display: inline;
-            max-width: 20%;
-        }
-    }
+.scrollable {
+    overflow-y: auto;
+}
 
-    .scrollable {
-        overflow-y: auto;
-    }
+.roundedBorder {
+    border-radius: 6px;
+    border: 1px solid lightgray;
+    padding: var(--gap);
+}
 
-    .section {
-        border-radius: 6px;
-        border: 1px solid lightgray;
-        padding: var(--gap);
-    }
+.footerPanel {
+    display: grid !important;
+    grid-template-columns: auto 24px !important;
+    align-items: center;
+}
 
-    .roundedBorder {
-        border-radius: 6px;
-        border: 1px solid lightgray;
-        padding: var(--gap);
-    }
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
-    .ellipsis {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+.headerMenu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
 }

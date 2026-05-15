@@ -10,7 +10,8 @@ namespace Models
     {
         public bool CodeExist(string code)
         {
-            return ToList().Where(u => u.Code.ToLower() == code.ToLower()).FirstOrDefault() != null;
+            // Vérifier si le code existe déjà dans la liste des étudiants
+            return ToList().Where(u => u.Code == code).FirstOrDefault() != null;
         }
 
         public override int Add(Student student)

@@ -1,30 +1,24 @@
 ﻿@model IEnumerable<Models.Student>
 
 @{
-    /* Regrouper les étudiants par les 4 premiers caractères de leur code (l'année)
-       et ordonner les groupes du plus récent au plus ancien */
-    var groupedStudents = Model.GroupBy(s => s.Code.Substring(0, 4)).OrderByDescending(g => g.Key);
+    // Regrouper les étudiants par cohorte (4 premiers caractères du code) en ordre décroissant
+    var groupedStudents = Model.GroupBy(s => s.Code.Substring(0, 4))
+                               .OrderByDescending(g => g.Key);
 }
-
 
 @foreach (var group in groupedStudents)
 {
-    /* Boucler à travers chaque groupe d'année */
-    /* <details open> crée une section repliable, open signifie expansé par défaut */
-    /* <summary> est l'en-tête cliquable affichant "Cohorte 2026" */
-    /* Boucler à travers les étudiants dans chaque groupe, triés par nom de famille */
-    /* Afficher le code, le nom et le prénom comme lien cliquable vers les détails */
+    // Afficher les étudiants regroupés par cohorte (4 premiers caractères du code) en ordre décroissant
     <details open>
-        <summary>Cohorte @group.Key</summary>
 
+        <summary>Cohorte @group.Key</summary>
         @foreach (var student in group.OrderBy(s => s.LastName))
         {
             <div class="studentLayout">
-
-                
-                    <a href="/Students/Details/@student.Id" class="studentCode">@student.Code</a><a href="/Students/Details/@student.Id" title="Voir les détails de @student.FirstName">
-                     @student.LastName @student.FirstName
-                    </a>
+                <a href="/Students/Details/@student.Id">
+                    <span class="studentCode">@student.Code</span>
+                    <span class="studentSearch">@student.LastName @student.FirstName</span>
+                </a>
             </div>
         }
     </details>

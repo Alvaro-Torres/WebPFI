@@ -15,9 +15,10 @@
     </dl>
 
     <h3>Étudiants inscrits</h3>
-  
+
     var registrations = DB.Registrations.ToList().Where(r => r.CourseId == Model.Id).GroupBy(r => r.Year).OrderByDescending(g => g.Key);
-    
+
+    // Récupérer les inscriptions du cours, les grouper par année et les trier par année décroissante
     foreach (var group in registrations)
     {
         <details open>

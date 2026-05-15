@@ -1,12 +1,40 @@
-﻿<div id="StuListPanel" class="StudentListLayout">
+﻿@{
+    string searchString = Session["SearchString"] != null ? (string)Session["SearchString"] : "";
+}
+
+<div id="StuListPanel" class="StudentListLayout">
     <!-- Rafraîchie périodiquement -->
 </div>
 
 @section Scripts {
     <script>
         $(() => {
-            /* Créer un panel auto-rafraîchi qui appelle GetStudents */
-            let studentListAutoRefreshPanel = new AutoRefreshedPanel("StuListPanel", "/Students/GetStudents", 5, null);
+            let studentListAutoRefreshPanel = new AutoRefreshedPanel("StuListPanel", "/Students/GetStudents", 5, postRefresh);
+            let keywordsOnchangeTimer = null;
+
+            // Met en évidence les mots-clés de recherche dans les résultats
+            function postRefresh() {
+                let keyword = "@searchString";
+                if (keyword.length > 0) {
+                    let links = document.getElementsByClassName('studentSearch');
+                    Array.from(links).forEach(link => {
+                        highlight(keyword, link);
+                    });
+                }
+            }
+
+
+            $("#searchInput").on('keyup', function () {
+                clearTimeout(keywordsOnchangeTimer);
+                keywordsOnchangeTimer = setTimeout(() => {
+                    window.location = "/Students/SetSearchString?value=" + $("#searchInput").val();
+                }, 500);
+            });
+
+            $("#searchInput").on('search', function () {
+                clearTimeout(keywordsOnchangeTimer);
+                window.location = "/Students/SetSearchString?value=" + $("#searchInput").val();
+            });
         })
     </script>
 }

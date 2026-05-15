@@ -3,8 +3,9 @@
 @foreach (var course in Model.OrderBy(c => c.Code))
 {
     <div class="courseLayout">
-        <a href="/Courses/Details/@course.Id" title="Voir les détails de @course.Code">
-            @course.Code @course.Title
+        <a href="/Courses/Details/@course.Id">
+            <span class="courseCode">@course.Code</span>
+            <span class="courseSearch">@course.Title</span>
         </a>
     </div>
 }

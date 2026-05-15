@@ -1,7 +1,7 @@
-﻿@using Models;
-@model Models.Student
+﻿@using Models
+@model Models.Teacher
 @{
-    string birthDate = Model.BirthDate.Year > 1 ? Model.BirthDate.ToString("yyyy-MM-dd") : "";
+    string startDate = Model.StartDate.Year > 1 ? Model.StartDate.ToString("yyyy-MM-dd") : "";
     bool creating = ViewBag.Action == "Create";
 }
 
@@ -24,15 +24,15 @@
     </fieldset>
 
     <fieldset>
-        <legend>Date de naissance</legend>
-        <input id="BirthDate" name="BirthDate" class="form-control datepicker"
-               placeholder="Date de naissance" value="@birthDate" />
+        <legend>Date d'embauche</legend>
+        <input id="StartDate" name="StartDate" class="form-control datepicker"
+               placeholder="Date d'embauche" value="@startDate" />
     </fieldset>
 
     <fieldset>
         <legend>Téléphone</legend>
-        <input id="Phone" name="Phone" class="form-control phone"
-               placeholder="(999) 999-9999" value="@Model.Phone" />
+        <input id="Phone" name="Phone" class="form-control phoneExt"
+               placeholder="(999) 999-9999 poste 99999" value="@Model.Phone" />
     </fieldset>
 
     <fieldset>
@@ -45,12 +45,12 @@
     {
         <details open>
             <summary>@NextSession.Caption</summary>
-             @*Widget de sélection de cours pour la prochaine session*@ 
+            @* Widget de sélection de cours pour la prochaine session *@
             @Helper.SelectionLists("selectedCoursesId",
-                (SelectList)ViewBag.Registrations,
+                (SelectList)ViewBag.Allocations,
                 (SelectList)ViewBag.Courses)
         </details>
     }
 
-    <input id="submit" type="submit" value="Enregistrer" class="btn btn-primary">
+    <input id="submit" type="submit" value="Enregistrer" class="btn btn-primary" >
 }
