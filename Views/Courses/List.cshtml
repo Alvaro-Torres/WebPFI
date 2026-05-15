@@ -1,7 +1,11 @@
-﻿
-@{
-    ViewBag.Title = "List";
+﻿<div id="CoursesListPanel" class="CoursesListLayout">
+    <!-- Rafraîchie périodiquement -->
+</div>
+
+@section Scripts {
+    <script>
+        $(() => {
+            let coursesListAutoRefreshPanel = new AutoRefreshedPanel("CoursesListPanel", "/Courses/GetCourses", 5, null);
+        })
+    </script>
 }
-
-<h2>List</h2>
-

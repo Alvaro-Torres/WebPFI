@@ -1,7 +1,10 @@
-﻿
-@{
-    ViewBag.Title = "GetCourses";
+﻿@model IEnumerable<Models.Course>
+
+@foreach (var course in Model.OrderBy(c => c.Code))
+{
+    <div class="courseLayout">
+        <a href="/Courses/Details/@course.Id" title="Voir les détails de @course.Code">
+            @course.Code @course.Title
+        </a>
+    </div>
 }
-
-<h2>GetCourses</h2>
-

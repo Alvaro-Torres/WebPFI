@@ -1,0 +1,43 @@
+﻿@using DAL
+@model Models.Course
+
+@if (Model != null)
+{
+    <dl>
+        <dt>Code</dt>
+        <dd>@Model.Code</dd>
+
+        <dt>Session</dt>
+        <dd>@Model.Session</dd>
+
+        <dt>Titre</dt>
+        <dd><strong>@Model.Title</strong></dd>
+    </dl>
+
+    <h3>Étudiants inscrits</h3>
+  
+    var registrations = DB.Registrations.ToList().Where(r => r.CourseId == Model.Id).GroupBy(r => r.Year).OrderByDescending(g => g.Key);
+    
+    foreach (var group in registrations)
+    {
+        <details open>
+            <summary>Cohorte @group.Key</summary>
+            @foreach (var registration in group)
+            {
+                var student = DB.Students.Get(registration.StudentId);
+                if (student != null)
+                {
+                    <div>
+                        <a href="/Students/Details/@student.Id">
+                            @student.Code @student.LastName @student.FirstName
+                        </a>
+                    </div>
+                }
+            }
+        </details>
+    }
+}
+else
+{
+    <h2 style="color:red">Ce cours a été effacé...</h2>
+}

@@ -9,7 +9,7 @@
 @foreach (var group in groupedTeachers)
 {
     <details open>
-        /* En-tête cliquable affichant l'année de début */
+        
         <summary>@group.Key</summary>
         @foreach (var teacher in group.OrderBy(t => t.LastName))
         {

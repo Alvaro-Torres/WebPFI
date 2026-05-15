@@ -1,0 +1,16 @@
+﻿@model Models.Teacher
+@{
+    ViewBag.PageTitle = "Prof - Détails";
+}
+
+<div id="teacherDetailsPanel" class="detailsPanel">
+    <!-- Rafraîchie périodiquement -->
+</div>
+
+@section Scripts {
+    <script>
+        $(() => {
+            let teacherDetails_ARP = new AutoRefreshedPanel("teacherDetailsPanel", "/Teachers/GetTeacherDetails", 5, null);
+        })
+    </script>
+}

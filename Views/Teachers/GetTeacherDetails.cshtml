@@ -1,0 +1,52 @@
+﻿@using DAL
+@model Models.Teacher
+
+@if (Model != null)
+{
+    <details open>
+        <summary>
+            <i class="fa fa-chalkboard-teacher"></i>
+            @Model.LastName @Model.FirstName
+        </summary>
+        <dl>
+            <dt><i class="fa fa-barcode"></i></dt>
+            <dd>@Model.Code</dd>
+
+            <dt><i class="fa fa-phone"></i></dt>
+            <dd>@Model.Phone</dd>
+
+            <dt><i class="fa fa-envelope"></i></dt>
+            <dd>@Model.Email</dd>
+
+            <dt><i class="fa fa-calendar"></i></dt>
+            <dd>@Model.StartDate.ToShortDateString()</dd>
+        </dl>
+    </details>
+
+    <h3>Allocations</h3>
+    
+    var allocations = DB.Allocations.ToList().Where(a => a.TeacherId == Model.Id).GroupBy(a => a.Year).OrderByDescending(g => g.Key);
+    
+    foreach (var group in allocations)
+    {
+        <details open>
+            <summary>@group.Key</summary>
+            @foreach (var allocation in group)
+            {
+                var course = DB.Courses.Get(allocation.CourseId);
+                if (course != null)
+                {
+                    <div>
+                        <a href="/Courses/Details/@course.Id">
+                            [@course.Session] @course.Code @course.Title
+                        </a>
+                    </div>
+                }
+            }
+        </details>
+    }
+}
+else
+{
+    <h2 style="color:red">Cet enseignant a été effacé...</h2>
+}

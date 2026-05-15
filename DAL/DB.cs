@@ -1,6 +1,7 @@
 ﻿//using EmailHandling;
 using Antlr.Runtime;
 using Controllers;
+using EmailHandling;
 using Models;
 using System;
 
@@ -38,18 +39,19 @@ namespace DAL
         public static Repository<Course> Courses { get; set; }
             = new Repository<Course>();
 
-        //  static public NotificationsRepository Notifications { get; set; }
-        //      = new NotificationsRepository();
+        static public NotificationsRepository Notifications { get; set; }
+            = new NotificationsRepository();
 
-        // static public LoginsRepository Logins { get; set; }
-        //    = new LoginsRepository();
+        static public LoginsRepository Logins { get; set; }
+           = new LoginsRepository();
 
-        // static public EventsRepository Events { get; set; }
-        //     = new EventsRepository();
+        static public EventsRepository Events { get; set; }
+            = new EventsRepository();
 
-        // static public Repository<RenewPasswordCommand> RenewPasswordCommands { get; set; }
-        //   = new Repository<RenewPasswordCommand>();
+        static public Repository<RenewPasswordCommand> RenewPasswordCommands { get; set; }
+          = new Repository<RenewPasswordCommand>();
 
-
+        static public Repository<UnverifiedEmail> UnverifiedEmails { get; set; }
+            = new Repository<UnverifiedEmail>();
     }
 }
